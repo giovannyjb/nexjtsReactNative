@@ -1,0 +1,37 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/formik", 
+      "**/formik/**", 
+      "**/yup", 
+      "**/yup/**", 
+      "**/@babel/runtime", 
+      "**/@babel/runtime/**",
+      "**/twrnc/**",
+      "**/twrnc",
+      "**/@babel/plugin-transform-runtime/**",
+      "**/react-native",
+      "**/react-native/**",
+      "**/@react-native-community/cli-platform-android",
+      "**/@react-native-community/cli-platform-android/**",
+      "**/metro",
+      "**/metro/**",
+      "**/metro-react-native-babel-preset",
+      "**/metro-react-native-babel-preset/**",
+      "**/react-native-gradle-plugin",
+      "**/react-native-gradle-plugin/**",
+      "**/@react-native/**"
+    ]
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.4"
+  }
+}
