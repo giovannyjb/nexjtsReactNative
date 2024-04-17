@@ -4,18 +4,34 @@ import { Formik } from "formik";
 import validationSchema from "../../../utils/validations/validation.form";
 import MyButton from "../atoms/ButtonRNW";
 import twApp from "../../../lib/tailwindMobile";
-import TextInputExample from "../atoms/Input";
-import Navigate from "../../../utils/routes/navigate";
-import { routes } from "../../../utils/routes";
-import { Platform } from "react-native";
+import CreatePostmanUseCase from "@shared/domain/use-cases/postman/createPostman.use.case";
+import { USECASES_TYPES } from "@shared/infrastructure/ioc/containers/usecases/usecases.types";
+import { appContainer } from "@shared/infrastructure/ioc/containers/inversify.config";
 
 const Form = () => {
+  //CONTAINERS
+  const CreatePostmanUseCase = appContainer.get<CreatePostmanUseCase>(
+    USECASES_TYPES._CreatePostmanUseCase
+  );
+  
+  console.log("CREATEPOSTMANUSECASE", CreatePostmanUseCase);
   return (
-    <View style={twApp``}>
+    <View style={twApp` bg-principal-80`}>
       <Formik
         initialValues={{ id: "", name: "", lastname: "", age: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={async (values) => {
+          if (values) {
+            const result = await CreatePostmanUseCase.execute({
+              data: { values },
+            });
+
+            console.log("GOOD!",result);
+
+          } else {
+            console.log("Vacio!");
+          }
+        }}
       >
         {({
           handleChange,
@@ -25,27 +41,17 @@ const Form = () => {
           errors,
           touched,
         }) => (
-          <View style={twApp`pl-4`}>
-            <View style={twApp``}>
-              <View style={twApp``}>
-                <Text style={twApp`text-xl font-bold my-4`}>
-                  Información Personal
-                </Text>
-              </View>
-              <View style={twApp`mb-3`}>
-                <TextInputExample
-                  name="a"
-                  onChangeText={handleChange("id")}
-                  onBlur={handleBlur("id")}
-                  value={values.id}
-                  placeholder="Identificación"
-                  inputMode="numeric"
-                />
-                {touched.id && errors.id && (
-                  <Text style={styles.errorText}>{errors.id}</Text>
-                )}
-              </View>
-            </View>
+          <View style={twApp`pl-4 mt-8`}>
+            <TextInput
+              onChangeText={handleChange("id")}
+              onBlur={handleBlur("id")}
+              value={values.id}
+              placeholder="Identificación"
+              style={styles.input}
+            />
+            {touched.id && errors.id && (
+              <Text style={styles.errorText}>{errors.id}</Text>
+            )}
 
             <TextInput
               onChangeText={handleChange("name")}
@@ -82,9 +88,9 @@ const Form = () => {
             )}
 
             <MyButton primary onPress={handleSubmit} title="Enviar" />
-            <Navigate
+            {/*<Navigate
               to={Platform.OS === "web" ? routes.home.web : routes.home.mobile}
-            />
+          />*/}
           </View>
         )}
       </Formik>

@@ -27,8 +27,10 @@ import {
 import ButtonRNW from '@shared/ui/components/atoms/ButtonRNW';
 import {saludo} from '@shared/utils/helpers';
 import Form from '@shared/ui/components/molecules/Form';
-import twApp from './tailwindMobile'
-
+import twApp from './tailwindMobile';
+import {NavigationContainer} from '@react-navigation/native';
+import {navigationRef} from './src/ui/utils/navigation';
+import {Navigator} from './src/ui/navigation/Navigator';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,13 +40,9 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View>
-        <Text style={twApp`bg-principal-100`}>Hola</Text>
-        <ButtonRNW title="Click Me!" onPress={saludo} />
-        <Form></Form>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
   );
 }
 

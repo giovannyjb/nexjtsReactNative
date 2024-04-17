@@ -8,7 +8,7 @@ module.exports = {
       {
         root: ['./'],
         alias: {
-          "*": "./src", // Asegúrate de que la ruta alias corresponde a la estructura de tu proyecto.
+          "@shared": "./src", // Asegúrate de que la ruta alias corresponde a la estructura de tu proyecto.
         },
       },
     ],

@@ -5,7 +5,7 @@ import { Text, StyleSheet, Pressable } from "react-native";
 import twApp from "../../../lib/tailwindMobile";
 interface PropsButtonRNW {
   title: string;
-  onPress: () => void;
+  onPress: (...arg0: any) => void;
   primary?: boolean;
   label?: string;
   primaryClass?: string;

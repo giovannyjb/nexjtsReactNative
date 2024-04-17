@@ -1,12 +1,14 @@
 "use client";
 import { routes } from "@shared/utils/routes";
-import Navigate from "@shared/utils/routes/navigate";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
     <div>
       <h1>Home Page</h1>
-      <Navigate to={routes.form.web} />
+      <Link href={routes.form.web}>
+        <button>ir a form</button>
+      </Link>
     </div>
   );
 }
