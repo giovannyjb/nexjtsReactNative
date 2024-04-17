@@ -5,6 +5,9 @@ import validationSchema from "../../../utils/validations/validation.form";
 import MyButton from "../atoms/ButtonRNW";
 import twApp from "../../../lib/tailwindMobile";
 import TextInputExample from "../atoms/Input";
+import Navigate from "../../../utils/routes/navigate";
+import { routes } from "../../../utils/routes";
+import { Platform } from "react-native";
 
 const Form = () => {
   return (
@@ -22,12 +25,14 @@ const Form = () => {
           errors,
           touched,
         }) => (
-          <View style={twApp``}>
+          <View style={twApp`pl-4`}>
             <View style={twApp``}>
               <View style={twApp``}>
-                <Text style={twApp``}>Nombres</Text>
+                <Text style={twApp`text-xl font-bold my-4`}>
+                  Información Personal
+                </Text>
               </View>
-              <View style={twApp``}>
+              <View style={twApp`mb-3`}>
                 <TextInputExample
                   name="a"
                   onChangeText={handleChange("id")}
@@ -77,6 +82,9 @@ const Form = () => {
             )}
 
             <MyButton primary onPress={handleSubmit} title="Enviar" />
+            <Navigate
+              to={Platform.OS === "web" ? routes.home.web : routes.home.mobile}
+            />
           </View>
         )}
       </Formik>

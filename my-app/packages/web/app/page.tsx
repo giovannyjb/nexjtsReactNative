@@ -1,11 +1,12 @@
-// packages/web/src/pages/index.tsx
-'use client'
-import React from "react";
+"use client";
+import { routes } from "@shared/utils/routes";
+import Navigate from "@shared/utils/routes/navigate";
 
-import Form from "@shared/ui/components/molecules/Form";
-
-const HomePage: React.FC = () => (
-  <Form />
-);
-
-export default HomePage;
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Navigate to={routes.form.web} />
+    </div>
+  );
+}

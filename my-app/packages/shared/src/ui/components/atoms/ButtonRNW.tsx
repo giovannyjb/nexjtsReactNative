@@ -31,18 +31,20 @@ const MyButton = ({
   return (
     <Pressable
       onPress={onPress}
-      style={twApp`font-outfit font-bold text-[1rem] leading-[1rem] rounded-full ${
-        isLoading ? "" : "active:scale-[99%]"
+      style={twApp`font-outfit font-bold text-[1rem] leading-[1rem] rounded-full flex items-center justify-center ${
+        isLoading ? "" : " active:scale-[99%]"
       } w-[180px] h-[50px]  ${
-        primary
-          ? `${primaryClass}`
-          : `${secondaryClass}`
+        primary ? `${primaryClass}` : `${secondaryClass}`
       } ${className}`}
     >
       {isLoading ? (
-        <Text style={twApp``}>{"Cargando"}</Text>
+        <Text style={twApp`text-[1rem] font-bold text-principal-150`}>
+          {"Cargando"}
+        </Text>
       ) : (
-        <Text style={twApp``}>{title}</Text>
+        <Text style={twApp`text-[1rem] font-bold text-principal-150`}>
+          {title}
+        </Text>
       )}
     </Pressable>
   );
